@@ -10,7 +10,8 @@
         "printWidth": 100,
         "semi": true,
         "useTabs": true,
-        "jsxSingleQuote": true
+        "jsxSingleQuote": true,
+        "bracketSpacing": false
       }
     ],
     "react/jsx-uses-vars": [2],
