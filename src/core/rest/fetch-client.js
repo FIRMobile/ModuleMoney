@@ -8,9 +8,9 @@ function bind(func, context) {
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-const PORTAL = 'https://Franch';
+const URL = 'http://e-banking-test-project.getsandbox.com';
 
-export default class requestsManager {
+class requestsManager {
 	static instance() {
 		if (!instance) {
 			instance = new requestsManager();
@@ -23,6 +23,9 @@ export default class requestsManager {
 		this.currentNextId = 0;
 		this.methodList = [
 			// лист методов которые не должны дублироваться
+			'login',
+			'getAssetsList',
+			'getTickers',
 		];
 		this.methodResponse = [
 			// лист методов которые должны получать ответ в любом случае
@@ -116,8 +119,67 @@ export default class requestsManager {
 
 	async login(callBack, params) {
 		console.log('request.login.params', params);
-		await sleep(timeResponse);
-		// fetch - запрос
-		callBack();
+		const {email, password} = params;
+		const responseFetch = await fetch(`${URL}/api/0/auth/login`, {
+			method: 'POST',
+			headers: {
+				Accept: '*/*',
+				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+			},
+			body: `email=${email}&password=${password}`,
+		});
+
+		if (responseFetch.ok) {
+			const responseFetchJSON = await responseFetch.json();
+			callBack(({token} = responseFetchJSON));
+		} else {
+			callBack({error: 'Не верный логин или пароль'});
+		}
+	}
+
+	async getAssetsList(callBack, params) {
+		console.log('request.getAssetsList.params', params);
+		const {token, page = 0, pageSize = 20, filter = 'all'} = params;
+		const responseFetch = await fetch(
+			`${URL}/api/0/assets?page=${page}&pageSize=${pageSize}&in=${filter}`,
+			{
+				method: 'GET',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			},
+		);
+
+		if (responseFetch.ok) {
+			const responseFetchJSON = await responseFetch.json();
+			console.log('assetsList', responseFetchJSON.content);
+			callBack({responseFetchJSON});
+		}
+		callBack({error: responseFetch.status});
+	}
+
+	async getTickers(callBack, params) {
+		console.log('request.getTickers.params', params);
+		const {token, pairs = ['ABCUSD', 'USDABC', 'BTCABC', 'ABCBTC', 'ABCETH', 'ETHABC']} = params;
+		const responseFetch = await fetch(`${URL}/api/0/assets/tickers`, {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+				body: `pairs=${pairs}`,
+			},
+		});
+
+		if (responseFetch.ok) {
+			const responseFetchJSON = await responseFetch.json();
+			callBack({responseFetchJSON});
+		} else {
+			callBack({error: responseFetch.status});
+		}
 	}
 }
+
+export default requestsManager;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 const styles = StyleSheet.create({
 	container: {
@@ -12,10 +12,12 @@ const styles = StyleSheet.create({
 
 export default class LoginScreen extends React.PureComponent {
 	render() {
-		const { onUpdateName } = this.props;
+		const {onAutarization} = this.props;
 		return (
 			<View style={styles.container}>
-				<Text onPress={onUpdateName}> LoginScreen - Нажми меня ^-^ !</Text>
+				<Text onPress={() => onAutarization({email: 'demo@initflow.com', password: 'demo'})}>
+					LoginScreen - Нажми меня ^-^ !
+				</Text>
 			</View>
 		);
 	}
