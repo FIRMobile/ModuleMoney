@@ -1,4 +1,5 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { reducer as form } from 'redux-form';
 import { createLogger } from 'redux-logger';
 import { persistStore, persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
 	profile,
 	login,
 	nav,
+	form,
 });
 
 const persistConfig = {
