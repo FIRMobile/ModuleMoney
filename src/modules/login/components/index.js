@@ -15,7 +15,7 @@ export default class LoginScreen extends React.PureComponent {
 		const { onUpdateName } = this.props;
 		return (
 			<View style={styles.container}>
-				<Text onPress={onUpdateName}> LoginScreen - Нажми меня ^-^ !</Text>
+				<Text onPress={onUpdateName}> LoginScreen - Нажми меня ^ - ^ ! </Text>{' '}
 			</View>
 		);
 	}
