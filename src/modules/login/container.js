@@ -3,10 +3,12 @@ import LoginScreen from './components';
 import loginReducer from './reducer';
 
 const Login = connect(
-	null,
+	state => ({
+		error: state.login.error,
+	}),
 	dispatch => ({
-		onUpdateName: () => {
-			dispatch(loginReducer.goFarther());
+		onAutarization: params => {
+			dispatch(loginReducer.authorization(params));
 		},
 	}),
 )(LoginScreen);
