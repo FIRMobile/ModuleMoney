@@ -1,0 +1,43 @@
+{
+	"editor.fontSize": 15,
+	"editor.tabSize": 4,
+	"editor.wordWrap": "bounded",
+	"javascript.preferences.quoteStyle": "single",
+	"files.exclude": {
+	  "node_modules/": true,
+	  "**/._*": true,
+	  "**/*.meta": true
+	},
+	"git.autofetch": true,
+	"workbench.iconTheme": "vscode-icons",
+	"git.confirmSync": false,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"workbench.colorTheme": "One Dark Pro",
+	"editor.tokenColorCustomizations": {
+	  "textMateRules": [
+		{
+		  "name": "jsx-tag",
+		  "scope": "support.class.component.js",
+		  "settings": {
+			"foreground": "#7775f5"
+		  }
+		},
+		{
+		  "name": "punctuation accessor",
+		  "scope": "punctuation.accessor",
+		  "settings": {
+			"foreground": "#F92672"
+		  }
+		}
+	  ]
+	},
+	"explorer.confirmDelete": false,
+  
+	// available through eslint plugin in vscode
+	"editor.formatOnSave": true,
+	"eslint.autoFixOnSave": true,
+	"eslint.alwaysShowStatus": true,
+	"editor.insertSpaces": false,
+	"editor.wordWrapColumn": 100
+  }
+  
