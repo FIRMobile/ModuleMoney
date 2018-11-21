@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {Component} from 'react';
 import {Text, Vibration, ToastAndroid} from 'react-native';
 import {Field, reduxForm} from 'redux-form';
@@ -52,8 +53,22 @@ class Login extends Component {
 			});
 		}
 	}
+=======
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#fff',
+	},
+});
+>>>>>>> a353c4cb8da99cf0f83667a0af83d07035beb438
 
 	render() {
+<<<<<<< HEAD
 		console.log('Login props', this.props);
 		const {
 			onClickSendForm,
@@ -93,6 +108,15 @@ class Login extends Component {
 					{error && <Text> {error.message} </Text>}
 				</Content>
 			</Container>
+=======
+		const {onAutarization} = this.props;
+		return (
+			<View style={styles.container}>
+				<Text onPress={() => onAutarization({email: 'demo@initflow.com', password: 'demo'})}>
+					LoginScreen - Нажми меня ^-^ !
+				</Text>
+			</View>
+>>>>>>> a353c4cb8da99cf0f83667a0af83d07035beb438
 		);
 	}
 }
